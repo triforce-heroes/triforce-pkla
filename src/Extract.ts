@@ -1,6 +1,6 @@
 import { BufferConsumer } from "@triforce-heroes/triforce-core/BufferConsumer";
 
-import { decrypt } from "./Crypt.js";
+import { messageDecrypt } from "./services/Message.js";
 
 type TableEntry = [hash: bigint, name: string];
 
@@ -59,7 +59,10 @@ export function extract(data: Buffer, table: Buffer) {
       hash,
       name,
       flags: entryFlags,
-      message: decrypt(messageConsumer.read(entryLength * 2), entryIndex),
+      message: messageDecrypt(
+        messageConsumer.read(entryLength * 2),
+        entryIndex,
+      ),
     });
 
     messageConsumer.skipPadding(4);

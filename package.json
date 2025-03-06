@@ -1,6 +1,6 @@
 {
   "name": "@triforce-heroes/triforce-pkla",
-  "description": "Extract and rebuild PKLA files.",
+  "description": "Extract and rebuild PKLA (.dat, .tbl) files.",
   "version": "1.0.0",
   "license": "Apache License 2.0",
   "type": "module",
