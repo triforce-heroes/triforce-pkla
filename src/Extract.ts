@@ -26,6 +26,7 @@ function extractTable(table: Buffer) {
 interface MessageEntry {
   hash: bigint;
   name: string;
+  flags: number;
   message: string;
 }
 
@@ -44,20 +45,24 @@ export function extract(data: Buffer, table: Buffer) {
   // Data
   dataConsumer.skip(4); // Data length (again).
 
+  const messageConsumer = new BufferConsumer(data, 20 + entriesCount * 8);
+
   for (let entryIndex = 0; entryIndex < entriesCount; entryIndex++) {
     const [hash, name] = tableEntries[entryIndex]!;
 
-    const entryOffset = dataConsumer.readUnsignedInt32();
-    const entryLength = dataConsumer.readUnsignedInt32();
+    dataConsumer.skip(4); // Offset.
+
+    const entryLength = dataConsumer.readUnsignedInt16();
+    const entryFlags = dataConsumer.readUnsignedInt16();
 
     entries.push({
       hash,
       name,
-      message: decrypt(
-        data.subarray(entryOffset + 16, entryOffset + 16 + entryLength * 2),
-        entryIndex,
-      ),
+      flags: entryFlags,
+      message: decrypt(messageConsumer.read(entryLength * 2), entryIndex),
     });
+
+    messageConsumer.skipPadding(4);
   }
 
   return entries;
