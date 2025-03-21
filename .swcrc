@@ -10,6 +10,10 @@
         "arguments": true,
         "passes": 2
       }
+    },
+    "baseUrl": "./dist",
+    "paths": {
+      "@/*": ["./*"]
     }
   },
   "test": ".*\\.js$",

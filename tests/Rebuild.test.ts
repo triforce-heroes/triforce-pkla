@@ -2,8 +2,8 @@ import { readFileSync, readdirSync } from "fs";
 
 import { describe, expect, it } from "vitest";
 
-import { extract } from "../src/Extract.js";
-import { rebuild } from "../src/Rebuild.js";
+import { extract } from "@/Extract.js";
+import { rebuild } from "@/Rebuild.js";
 
 describe("rebuild() function", () => {
   const originalSamples: Array<[string]> = Array.from(

@@ -2,7 +2,7 @@ import { readFileSync } from "fs";
 
 import { describe, expect, it } from "vitest";
 
-import { extract } from "../src/Extract.js";
+import { extract } from "@/Extract.js";
 
 describe("extract() function", () => {
   const samples = [

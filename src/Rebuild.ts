@@ -1,8 +1,7 @@
 import { BufferBuilder } from "@triforce-heroes/triforce-core/BufferBuilder";
 
-import { messageEncrypt } from "./services/Message.js";
-
-import type { extract } from "./Extract.js";
+import type { extract } from "@/Extract.js";
+import { messageEncrypt } from "@/services/Message.js";
 
 export function rebuild(
   entries: ReturnType<typeof extract>,

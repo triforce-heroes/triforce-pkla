@@ -1,6 +1,6 @@
 import { BufferConsumer } from "@triforce-heroes/triforce-core/BufferConsumer";
 
-import { messageDecrypt } from "./services/Message.js";
+import { messageDecrypt } from "@/services/Message.js";
 
 type TableEntry = [hash: bigint, name: string];
 
